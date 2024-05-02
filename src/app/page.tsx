@@ -1,113 +1,165 @@
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { HiPlus, HiMinus } from 'react-icons/hi';
 import Image from "next/image";
+import headphoneImage from '../app/assets/images/headphone-img-sample.png'
+import { AddressForm } from './components/address-form';
+
 
 export default function Home() {
+
+  // const [count, setCount] = useState(0);
+
+
+  // const handleIncrement = () => {
+  //   setCount((prevCount) => prevCount + 1);
+  // };
+
+  // const handleDecrement = () => {
+  //   if (count > 0) {
+  //     setCount((prevCount) => prevCount - 1);
+  //   }
+  // };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="flex justify-center flex-wrap items-stretch">
+
+      <div className="bg-bgretangle p-10 rounded-lg mr-8">
+        <div>
+
+          <div className="flex justify-center items-center mb-12">
+            <div className="mr-5">
+              <span className="text-blueButton text-xl leading-6 font-medium">Shipping</span>
+            </div>
+
+            <div className="w-6 h-0 border-b-2 border-blueButton mr-2"></div>
+
+            <div className="">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.99963 20C4.47663 20 -0.000366211 15.523 -0.000366211 10C-0.000366211 4.477 4.47663 0 9.99963 0C15.5226 0 19.9996 4.477 19.9996 10C19.9996 15.523 15.5226 20 9.99963 20ZM9.00263 14L16.0726 6.929L14.6586 5.515L9.00263 11.172L6.17363 8.343L4.75963 9.757L9.00263 14Z" fill="#1A202C" />
+              </svg>
+            </div>
+
+            <div className="w-6 h-0 border-b-2 border-blueButton ml-2"></div>
+
+            <div className="ml-5">
+              <span className="text-gray text-xl leading-6 font-medium">Payment</span>
+            </div>
+          </div>
+
+          <h2 className="text-xl font-medium leading-6 text-black">Shipping Details</h2>
+          <AddressForm />
         </div>
       </div>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className="bg-bgretangle p-10 rounded-lg">
+        <div className="max-w-md">
+          <h2 className="text-xl font-medium leading-6 text-black">Order Summary</h2>
+
+
+          <div className="my-5">
+            <Image src={headphoneImage} alt="img name" className="w-full" />
+          </div>
+
+          <div className="mb-7 grid grid-cols-3 gap-y-2">
+
+            <span className="text-black leading-6 font-medium text-xl col-span-2">Sony wireless headphones</span>
+
+
+            <div className="flex items-center justify-end">
+              <button
+                type="button"
+                // onClick={handleDecrement}
+                className="bg-bginputs text-labeltext p-3 rounded-md"
+              >
+                <HiMinus />
+              </button>
+              <div className="bg-transparent text-center text-black font-medium leading-6 text-xl px-3 py-2">1</div>
+              <button
+                type="button"
+                // onClick={handleIncrement}
+                className="bg-bginputs text-labeltext p-3 rounded-md"
+              >
+                <HiPlus />
+              </button>
+            </div>
+
+            <div>
+              <span className="text-black leading-6 font-bold text-xl">{new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(320.45)}</span>
+            </div>
+
+          </div>
+
+          <div className="w-full mb-5">
+            <label htmlFor="email" className="block text-base font-medium leading-5 text-labeltext">
+              Gift Card / Discount Code
+            </label>
+          </div>
+
+          <div className="grid grid-cols-3">
+            <div className="col-span-2">
+              <input
+                id="first-line-address"
+                name="first-line-address"
+                className="p-4 w-full rounded-md border-0 focus:ring-0 text-graytext bg-bginputs"
+              />
+            </div>
+
+            <div className="flex justify-end">
+              <button
+                type="submit"
+                className="px-8 py-4 rounded-lg bg-transparent text-blueButton shadow-sm
+                  border-solid border-2 border-blueButton text-base font-medium leading-5"
+              >
+                Apply
+              </button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-y-8 mt-12">
+            <div className="col-span-1">
+              <span className="text-grayButton font-medium text-lg leading-5">Sub Total</span>
+            </div>
+
+            <div className="flex justify-end">
+              <span className="text-graytext font-medium text-xl leading-6">
+                {new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(316.55)}
+              </span>
+            </div>
+
+            <div className="col-span-1">
+              <span className="text-grayButton font-medium text-lg leading-5">Tax</span>
+            </div>
+
+            <div className="flex justify-end">
+              <span className="text-graytext font-medium text-xl leading-6">
+                {new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(3.45)}
+              </span>
+            </div>
+
+            <div className="col-span-1">
+              <span className="text-grayButton font-medium text-lg leading-5">Shipping</span>
+            </div>
+            <div className="flex justify-end">
+              <span className="text-lightGreen font-medium text-xl leading-6">Free</span>
+            </div>
+
+
+            <div className="col-span-1">
+              <span className="text-graytext font-bold text-xl leading-6 col-span-1">Total</span>
+            </div>
+            <div className="flex justify-end">
+              <span className="text-graytext font-medium text-xl leading-6">
+                {new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(320)}
+              </span>
+            </div>
+
+          </div>
+
+        </div>
       </div>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   );
 }

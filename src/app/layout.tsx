@@ -16,7 +16,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className="relative min-h-screen lg:grid lg:grid-cols-app">
+          <main className="max-w-screen px-4 lg:w-auto lg:px-8 lg:pt-8">
+            {children}
+          </main>
+        </div>
+      </body>
     </html>
   );
 }
