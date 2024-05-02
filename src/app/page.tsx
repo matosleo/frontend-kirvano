@@ -1,14 +1,13 @@
+'use client'
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { HiPlus, HiMinus } from 'react-icons/hi';
 import Image from "next/image";
-import headphoneImage from '../app/assets/images/headphone-img-sample.png'
+import headphoneImage from '../app/assets/images/headphone-img-sample.png';
 import { AddressForm } from './components/address-form';
 
 
 export default function Home() {
-
-  // const [count, setCount] = useState(0);
 
 
   // const handleIncrement = () => {

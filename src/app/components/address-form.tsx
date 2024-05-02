@@ -5,10 +5,10 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { BaseSyntheticEvent } from "react"
 
 const addressFormSchema = z.object({
-  firstLineAddress: z.string(),
-  streetName: z.string(),
-  postcode: z.string(),
-  shippingFee: z.coerce.number()
+  firstLineAddress: z.string().min(1, 'This field is required!'),
+  streetName: z.string().min(1, 'This field is required!'),
+  postcode: z.string().min(1, 'This field is required!'),
+  shippingFee: z.coerce.number().min(1, 'This field is required!')
 })
 
 type AdressFormSchema = z.infer<typeof addressFormSchema>
@@ -16,7 +16,13 @@ type AdressFormSchema = z.infer<typeof addressFormSchema>
 
 export function AddressForm() {
 
-  const { register, handleSubmit, reset, setValue } = useForm<AdressFormSchema>({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setValue,
+    formState: { errors }
+  } = useForm<AdressFormSchema>({
     resolver: zodResolver(addressFormSchema)
   })
 
@@ -55,7 +61,7 @@ export function AddressForm() {
                 className="p-4 w-full rounded-md border-0 focus:ring-0 text-graytext bg-bginputs"
                 onChange={handleSavedAddressSelect}
               >
-                <option value={0}>Não</option>
+                <option value={0}>None</option>
                 <option value={321}>123, Electric avenue</option>
               </select>
             </div>
@@ -76,6 +82,7 @@ export function AddressForm() {
                   </svg>
                 </div>
               </div>
+              {errors.firstLineAddress && <span>{errors.firstLineAddress.message}</span>}
             </div>
 
             <div className="col-span-full">
@@ -94,6 +101,7 @@ export function AddressForm() {
                   </svg>
                 </div>
               </div>
+              {errors.streetName && <span>{errors.streetName.message}</span>}
             </div>
 
             <div className="sm:col-span-2 sm:col-start-1">
@@ -106,6 +114,7 @@ export function AddressForm() {
                   {...register("postcode")}
                 />
               </div>
+              {errors.postcode && <span>{errors.postcode.message}</span>}
             </div>
 
             <div className="sm:col-span-2">
