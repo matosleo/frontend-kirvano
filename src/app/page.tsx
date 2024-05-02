@@ -5,49 +5,40 @@ import { HiPlus, HiMinus } from 'react-icons/hi';
 import Image from "next/image";
 import headphoneImage from '../app/assets/images/headphone-img-sample.png';
 import { AddressForm } from './components/address-form';
+import { PaymentForm } from './components/payment-form';
 
 
 export default function Home() {
 
+  const [shippingData, setShippingData] = useState({});
+  const [paymentData, setPaymentData] = useState({});
+  const [showCardForm, setShowCardForm] = useState<Boolean>(false);
 
-  // const handleIncrement = () => {
-  //   setCount((prevCount) => prevCount + 1);
-  // };
 
-  // const handleDecrement = () => {
-  //   if (count > 0) {
-  //     setCount((prevCount) => prevCount - 1);
-  //   }
-  // };
+  function onShippingFormSubmit(data: Object) {
+    setShowCardForm(true)
+    setShippingData(data)
+    console.log(data)
+  }
+
+
+  function onPaymentFormSubmit(data: Object) {
+    setPaymentData(data)
+    console.log(data)
+    alert("Pagamento Efetuado!")
+  }
 
   return (
     <div className="flex justify-center flex-wrap items-stretch">
 
-      <div className="bg-bgretangle p-10 rounded-lg mr-8">
+      <div className="bg-bgretangle py-10 px-28 rounded-lg mr-8">
         <div>
-
-          <div className="flex justify-center items-center mb-12">
-            <div className="mr-5">
-              <span className="text-blueButton text-xl leading-6 font-medium">Shipping</span>
-            </div>
-
-            <div className="w-6 h-0 border-b-2 border-blueButton mr-2"></div>
-
-            <div className="">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.99963 20C4.47663 20 -0.000366211 15.523 -0.000366211 10C-0.000366211 4.477 4.47663 0 9.99963 0C15.5226 0 19.9996 4.477 19.9996 10C19.9996 15.523 15.5226 20 9.99963 20ZM9.00263 14L16.0726 6.929L14.6586 5.515L9.00263 11.172L6.17363 8.343L4.75963 9.757L9.00263 14Z" fill="#1A202C" />
-              </svg>
-            </div>
-
-            <div className="w-6 h-0 border-b-2 border-blueButton ml-2"></div>
-
-            <div className="ml-5">
-              <span className="text-gray text-xl leading-6 font-medium">Payment</span>
-            </div>
-          </div>
-
-          <h2 className="text-xl font-medium leading-6 text-black">Shipping Details</h2>
-          <AddressForm />
+          {
+            showCardForm ?
+              <PaymentForm onPaymentFormSubmit={onPaymentFormSubmit} />
+              :
+              <AddressForm onShippingFormSubmit={onShippingFormSubmit} />
+          }
         </div>
       </div>
 
@@ -68,7 +59,6 @@ export default function Home() {
             <div className="flex items-center justify-end">
               <button
                 type="button"
-                // onClick={handleDecrement}
                 className="bg-bginputs text-labeltext p-3 rounded-md"
               >
                 <HiMinus />
@@ -76,7 +66,6 @@ export default function Home() {
               <div className="bg-transparent text-center text-black font-medium leading-6 text-xl px-3 py-2">1</div>
               <button
                 type="button"
-                // onClick={handleIncrement}
                 className="bg-bginputs text-labeltext p-3 rounded-md"
               >
                 <HiPlus />

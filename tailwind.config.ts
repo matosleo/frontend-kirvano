@@ -18,6 +18,9 @@ const config: Config = {
         grayButton: '#4A5568',
         lightGreen: '#38B2AC',
         gray: '#828282'
+      },
+      rotate: {
+        '65': '65deg',
       }
     },
   },
